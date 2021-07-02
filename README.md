@@ -56,4 +56,9 @@
 
 Результат  
 
-![Image](img/7.png)
+![Image](img/7.png)  
+
+Скачанный DOCX документ:  
+
+![Image](img/8.png)
+
