@@ -50,8 +50,10 @@
 ![Image](img/5.png)
 
 Чтобы скачать файл, можно нажать на стрелку рядом с кнопкой 'Send' и  
-затем выбрать 'Send and Download'
-![Image](img/6.png)
+затем выбрать 'Send and Download'  
 
-Результат
+![Image](img/6.png)  
+
+Результат  
+
 ![Image](img/7.png)
