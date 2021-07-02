@@ -17,5 +17,6 @@ java {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation group: 'com.itextpdf', name: 'itextpdf', version: '5.5.13.2'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

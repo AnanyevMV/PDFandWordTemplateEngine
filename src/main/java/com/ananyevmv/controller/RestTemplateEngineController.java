@@ -2,6 +2,8 @@ package com.ananyevmv.controller;
 
 import com.ananyevmv.dto.TemplateInput;
 import com.ananyevmv.service.TemplateEngineService;
+import com.ananyevmv.service.TextToPDFService;
+import com.ananyevmv.service.TextToWordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +17,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class RestTemplateEngineController {
 
     private final TemplateEngineService templateEngineService;
+    private final TextToWordService textToWordService;
+    private final TextToPDFService textToPDFService;
 
     @Autowired
-    public RestTemplateEngineController(TemplateEngineService templateEngineService) {
+    public RestTemplateEngineController(TemplateEngineService templateEngineService,
+            TextToWordService textToWordService, TextToPDFService textToPDFService) {
         this.templateEngineService = templateEngineService;
+        this.textToWordService = textToWordService;
+        this.textToPDFService = textToPDFService;
     }
 
     @PostMapping("/saveToPDF")
@@ -26,6 +33,8 @@ public class RestTemplateEngineController {
         System.out.println(templateInput);
         String templateResult = templateEngineService.processTemplate(templateInput);
         System.out.println(templateResult);
+        textToPDFService.convertStringToPDF(templateResult);
+
         return new ResponseEntity<>(templateResult, HttpStatus.OK);
     }
 
