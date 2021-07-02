@@ -9,18 +9,23 @@ import com.itextpdf.text.pdf.PdfWriter;
 import org.springframework.stereotype.Service;
 
 import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDateTime;
 
 @Service
 public class TextToPDFServiceImpl implements TextToPDFService {
     private static final String fileNameSuffix = "-output.pdf";
+    private static final String fileNamePrefix = "generated/";
     private static final int FONT_SIZE = 14;
 
     @Override
     public String convertStringToPDF(String text) {
         try {
             Document document = new Document();
-            String fileName = LocalDateTime.now() + fileNameSuffix;
+            // Метод createDirectories, в отличие от createDirectory, не бросает исключение, если директория уже существует
+            Files.createDirectories(Path.of(fileNamePrefix));
+            String fileName = fileNamePrefix + LocalDateTime.now() + fileNameSuffix;
             PdfWriter.getInstance(document, new FileOutputStream(fileName));
             document.open();
             Font font = FontFactory.getFont("arial.ttf", BaseFont.IDENTITY_H, FONT_SIZE);

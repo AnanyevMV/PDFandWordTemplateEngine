@@ -30,19 +30,19 @@ public class RestTemplateEngineController {
 
     @PostMapping("/saveToPDF")
     public ResponseEntity<?> saveToPDF(@RequestBody TemplateInput templateInput) {
-        System.out.println(templateInput);
         String templateResult = templateEngineService.processTemplate(templateInput);
-        System.out.println(templateResult);
-        textToPDFService.convertStringToPDF(templateResult);
+        
+        String fileName = textToPDFService.convertStringToPDF(templateResult);
 
         return new ResponseEntity<>(templateResult, HttpStatus.OK);
     }
 
     @PostMapping("/saveToWord")
     public ResponseEntity<?> saveToWord(@RequestBody TemplateInput templateInput) {
-        System.out.println(templateInput);
         String templateResult = templateEngineService.processTemplate(templateInput);
-        System.out.println(templateResult);
+
+        String fileName = textToWordService.convertStringToWord(templateResult);
+
         return new ResponseEntity<>(templateResult, HttpStatus.OK);
     }
 }
