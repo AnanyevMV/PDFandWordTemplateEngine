@@ -27,7 +27,6 @@ public class TemplateEngineServiceImpl implements TemplateEngineService {
             endOfExpressionIndex = templateStringBuilder.indexOf("}", startOfExpressionIndex);
             // к переменной startOffExpressionIndex прибавляется 2, т.к. символы ${ нас не интересуют
             String substitutionVariable = templateStringBuilder.substring(startOfExpressionIndex + 2, endOfExpressionIndex);
-            fromIndex = endOfExpressionIndex;
             String substitutionValue = substitutions.get(substitutionVariable);
             checkSubstitutionValue(substitutionValue, substitutionVariable);
             templateStringBuilder.insert(startOfExpressionIndex, substitutionValue);
@@ -35,6 +34,7 @@ public class TemplateEngineServiceImpl implements TemplateEngineService {
             // при stringBuilder.delete(start, end)
             templateStringBuilder.delete(startOfExpressionIndex + substitutionValue.length(),
             endOfExpressionIndex + substitutionValue.length() + 1);
+            fromIndex = startOfExpressionIndex;
         }
         return templateStringBuilder.toString();
     }
